@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hero;
 use Illuminate\Http\Request;
 
 class HeroController extends Controller
@@ -18,5 +19,26 @@ class HeroController extends Controller
         $view = view('hero/show');
         $view->hero = $hero;
         return $view;
+    }
+
+    public function index() 
+    {
+        $hero = Hero::orderBy('name', 'asc')->get();
+
+        $view = view('hero/index');
+        $view->hero = $hero;
+        return $view;
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+           'subject',
+           'description'
+        ]);
+
+        $hero = Hero::create($request->all());
+
+        return redirect(action('HeroController@index'));
     }
 }

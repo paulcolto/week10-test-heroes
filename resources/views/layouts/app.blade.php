@@ -6,13 +6,13 @@
     <title>Justice League</title>
 
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Bangers&amp;subset=latin-ext" rel="stylesheet">
-    
+    <link rel="stylesheet" href="public/css">
     {{-- load the stylesheet --}}
 </head>
 <body>
 
     <nav class="menu">
-        <a href="#">Home</a>
+        <a href="/homepage">Home</a>
         @guest
             <a href="{{ route('login') }}">Login</a>
             <a href="{{ route('register') }}">Register</a>
@@ -22,7 +22,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-        @endguest
+        @endguests
     </nav>
     
     @yield('content')
